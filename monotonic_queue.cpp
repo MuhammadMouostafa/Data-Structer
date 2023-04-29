@@ -2,14 +2,6 @@
 
 using namespace std;
 
-void file()
-{
-#ifndef ONLINE_JUDGE
-    freopen("input.in", "r", stdin);
-    freopen("output.out", "w", stdout);
-#endif
-}
-
 struct monotonicStack{
     stack<pair<int,int>> stk;
     void push(int val){
@@ -93,9 +85,6 @@ void work(const int &T){
 }
 int main()
 {
-    file();
-    
-
     int T = 1;
     // cin >> T;
     for(int t=1; t<=T; t++)work(t);

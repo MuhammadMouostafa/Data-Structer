@@ -74,21 +74,3 @@ void LinkedList<T>::print(){
     cout<<endl;
 }
 
-
-/*
-
-template<typename T>
-void LinkedList<T>::print(LinkedList_Node<T>* current)
-{
-    if(current == nullptr)return;
-    print(current->next);
-    cout<< current->data <<" ";
-}
-
-template<typename T>
-void LinkedList<T>::print()
-{
-    print(head);
-    cout<<endl;
-}
-*/

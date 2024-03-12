@@ -1,20 +1,53 @@
-#include "../dqueue/dqueue_linkedlist.h"
+#pragma once
 
-#include<iostream>
+#include"stack_linkedlist.hpp"
+
 
 template<typename T>
-class StackL: public DqueueL<T>{
-public:
-    void push(T val){ push_back(val); }
-    void pop(){ pop_back(); }
-    T top(){return back();}
-private:
-    using DqueueL<T>::push_front;
-    using DqueueL<T>::push_back;
-    
-    using DqueueL<T>::front;
-    using DqueueL<T>::back;
+Stack_LinkedList<T>::Stack_LinkedList():
+    topPtr(nullptr),
+    sz(0)
+{}
 
-    using DqueueL<T>::pop_front;
-    using DqueueL<T>::pop_back;
-};
+template<typename T>
+void Stack_LinkedList<T>::push(T val){
+    LinkedList_Node<T>* temp = new LinkedList_Node<T>(val);
+    if(sz){
+        temp->next=topPtr;
+    }
+    topPtr = temp;
+    sz++;  
+}
+
+template<typename T>
+T Stack_LinkedList<T>::top(){
+    if (topPtr==nullptr)
+    {
+        return NULL;
+    }
+    return topPtr->data;
+}
+
+template<typename T>
+void Stack_LinkedList<T>::pop(){
+    if(sz){
+        LinkedList_Node<T>* temp = topPtr;
+        if(sz==1){
+            topPtr=nullptr;
+        }else{
+            topPtr = topPtr->next;
+        }
+        delete temp;
+        sz--;
+    }
+}
+
+template<typename T>
+int Stack_LinkedList<T>::size(){
+    return sz;
+}
+
+template<typename T>
+bool Stack_LinkedList<T>::empety(){
+    return size()==0;
+}

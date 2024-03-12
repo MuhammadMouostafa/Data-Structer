@@ -1,18 +1,56 @@
-#include "../dqueue/dqueue_linkedlist.h"
+#pragma once
 
-#include<iostream>
+#include"queue_linkedlist.hpp"
+
 
 template<typename T>
-class QueueL: public DqueueL<T>{
-public:
-    void push(T val){ push_back(val); }
-    void pop(){ pop_front(); }
-private:
-    using DqueueL<T>::push_front;
-    using DqueueL<T>::push_back;
+Queue_linkedlist<T>::Queue_linkedlist():
+    frontPtr(nullptr),
+    backPtr(nullptr),
+    sz(0)
+{}
 
-    using DqueueL<T>::back;
+template<typename T>
+void Queue_linkedlist<T>::push(T val){
+    LinkedList_Node<T>* temp = new LinkedList_Node<T>(val);
+    if(sz){
+        backPtr->next=temp;
+    }else{
+        frontPtr = temp;
+    }
+    backPtr = temp;
+    sz++;  
+}
 
-    using DqueueL<T>::pop_front;
-    using DqueueL<T>::pop_back;
-};
+template<typename T>
+T Queue_linkedlist<T>::front(){
+    if (frontPtr==nullptr)
+    {
+        return NULL;
+    }
+    return frontPtr->data;
+}
+
+template<typename T>
+void Queue_linkedlist<T>::pop(){
+    if(sz){
+        LinkedList_Node<T>* temp = frontPtr;
+        if(sz==1){
+            frontPtr=backPtr=nullptr;
+        }else{
+            frontPtr = frontPtr->next;
+        }
+        delete temp;
+        sz--;
+    }
+}
+
+template<typename T>
+int Queue_linkedlist<T>::size(){
+    return sz;
+}
+
+template<typename T>
+bool Queue_linkedlist<T>::empety(){
+    return size()==0;
+}

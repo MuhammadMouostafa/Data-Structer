@@ -1,11 +1,17 @@
-#include "dqueue_linkedlist.h"
+#pragma once
+
+#include "deque_linkedlist.hpp"
 
 template<typename T>
-DqueueL<T>::DqueueL() : frontPtr(nullptr),backPtr(nullptr){}
+Deque_linked_list<T>::Deque_linked_list() :
+    frontPtr(nullptr),
+    backPtr(nullptr),
+    sz(0)
+    {}
 
 template<typename T>
-void DqueueL<T>::push_front(T val){
-    Node<T>* temp = new Node<T>(val);
+void Deque_linked_list<T>::push_front(T val){
+    Doubley_LinkedList_Node<T>* temp = new Doubley_LinkedList_Node<T>(val);
     if(sz){
         temp->next=frontPtr;
         frontPtr->prev=temp;
@@ -13,25 +19,23 @@ void DqueueL<T>::push_front(T val){
         backPtr = temp;
     }
     frontPtr = temp;
-    temp=nullptr;  
     sz++;  
 }
 template<typename T>
-void DqueueL<T>::push_back(T val){
-    Node<T>* temp = new Node<T>(val);
+void Deque_linked_list<T>::push_back(T val){
+    Doubley_LinkedList_Node<T>* temp = new Doubley_LinkedList_Node<T>(val);
     if(sz){
         backPtr->next=temp;
         temp->prev=backPtr;
     }else{
         frontPtr = temp;
     }
-    backPtr = temp;
-    temp=nullptr;  
+    backPtr = temp; 
     sz++;  
 }
 
 template<typename T>
-T DqueueL<T>::front(){
+T Deque_linked_list<T>::front(){
     if (frontPtr==nullptr)
     {
         return NULL;
@@ -39,7 +43,7 @@ T DqueueL<T>::front(){
     return frontPtr->data;
 }
 template<typename T>
-T DqueueL<T>::back(){
+T Deque_linked_list<T>::back(){
     if (backPtr==nullptr)
     {
         return NULL;
@@ -48,34 +52,47 @@ T DqueueL<T>::back(){
 }
 
 template<typename T>
-void DqueueL<T>::pop_front(){
+void Deque_linked_list<T>::pop_front(){
     if(sz){
+        Doubley_LinkedList_Node<T>* temp = frontPtr;
         if(sz==1){
             frontPtr=backPtr=nullptr;
         }else{
             frontPtr = frontPtr->next;
             frontPtr->prev=nullptr;
         }
+        delete temp;
         sz--;
     }    
 }
 template<typename T>
-void DqueueL<T>::pop_back(){
+void Deque_linked_list<T>::pop_back(){
     if(sz){
+        Doubley_LinkedList_Node<T>* temp = backPtr;
         if(sz==1){
             frontPtr=backPtr=nullptr;
         }else{
             backPtr = backPtr->prev;
             backPtr->next=nullptr;
         }
+        delete temp;
         sz--;
     }    
 }
 
 template<typename T>
-DqueueL<T>::~DqueueL(){
-    delete frontPtr;
-    delete backPtr;
+int Deque_linked_list<T>::size(){
+    return sz;
+}
+
+template<typename T>
+bool Deque_linked_list<T>::empety(){
+    return size()==0;
+}
+
+template<typename T>
+Deque_linked_list<T>::~Deque_linked_list(){
+    while(!empety())pop_front();
 }
 
 

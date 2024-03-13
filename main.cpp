@@ -13,6 +13,7 @@
 
 #include"Heap/test_heap.cpp"
 
+#include"HashTable/test_hash_table_list.cpp"
 
 int main(){
 
@@ -29,5 +30,7 @@ int main(){
 
     // testBST();
 
-    testHeap();
+    // testHeap();
+
+    test_HashTable_List();
 }

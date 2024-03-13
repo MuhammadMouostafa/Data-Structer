@@ -15,6 +15,8 @@
 
 #include"HashTable/test_hash_table_list.cpp"
 
+#include"Trie/test_trie.cpp"
+
 int main(){
 
     // test_LinkedList();
@@ -34,6 +36,8 @@ int main(){
     // testHeap();
     // apps priority_queue
 
-    test_HashTable_List();
+    // test_HashTable_List();
     // apps unordered_set, unordered_map
+
+    test_Trie();
 }

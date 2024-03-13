@@ -1,29 +1,28 @@
-#ifndef BST_H
-#define BST_H
+#pragma once
 
-#include "../binary_tree_node.cpp"
+#include"binary_tree_node.cpp"
+
 
 template<typename Tkey, typename Tdata>
-class BST{
+class BinarySearchTree{
 public:
-    BST();
+    BinarySearchTree();
 
     void insert(Tkey key, Tdata data);
     void remove(Tkey key);
     void preOrder();
-    void inorder();//sorted
+    void inorder();
     void postOrder();
  
     BinaryTreeNode<Tkey,Tdata>*  min();
     BinaryTreeNode<Tkey,Tdata>*  max();
 
     BinaryTreeNode<Tkey,Tdata>*  search(Tkey key);
-    // BinaryTreeNode<Tkey,Tdata>* successor();
-    // BinaryTreeNode<Tkey,Tdata>* predecessor();
+    BinaryTreeNode<Tkey,Tdata>* successor(Tkey key);
+    BinaryTreeNode<Tkey,Tdata>* predecessor(Tkey key);
 
 
 
-    ~BST();
 protected:
     BinaryTreeNode<Tkey,Tdata> *root;
  
@@ -37,10 +36,8 @@ protected:
     BinaryTreeNode<Tkey,Tdata>* _max(BinaryTreeNode<Tkey,Tdata>* current);
     
     BinaryTreeNode<Tkey,Tdata>* _search(BinaryTreeNode<Tkey,Tdata>* current, Tkey key);
-    // BinaryTreeNode<Tkey,Tdata>* _successor(BinaryTreeNode<Tkey,Tdata>* current);
-    // BinaryTreeNode<Tkey,Tdata>* _predecessor(BinaryTreeNode<Tkey,Tdata>* current);
 
 };
 
 
-#endif
+#include"binary_search_tree.cpp"

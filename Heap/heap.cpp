@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "heap.hpp"
 
 template<typename T>
 Heap<T>::Heap() :sz(0),arr(new T(MAX_SIZE)){}
@@ -31,19 +31,19 @@ int Heap<T>::size(){
 }
 template<typename T>
 bool Heap<T>::isEmpty(){
-    return sz==0;
+    return size()==0;
 }
 
 template<typename T>
 void Heap<T>::expand(){
     T* newArr=new T(MAX_SIZE);
-    for(int i=0; i<MAX_SIZE; i++){
+    for(int i=0; i<sz; i++){
         newArr[i]=arr[i];
     }
 
     MAX_SIZE*=2;
     arr=new T(MAX_SIZE);
-    for(int i=0; i<MAX_SIZE/2; i++){
+    for(int i=0; i<sz; i++){
         arr[i]=newArr[i];
     }
     delete[] newArr;

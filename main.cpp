@@ -29,8 +29,11 @@ int main(){
     // test_deque();
 
     // testBST();
+    // apps ==> set, map
 
     // testHeap();
+    // apps priority_queue
 
     test_HashTable_List();
+    // apps unordered_set, unordered_map
 }
